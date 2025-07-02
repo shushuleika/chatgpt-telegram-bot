@@ -1,7 +1,14 @@
 services:
   - type: web
     name: chatgpt-telegram-bot
-    env: python
+    runtime: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python main.py
+    envVars:
+      - key: TELEGRAM_BOT_TOKEN
+        sync: false
+      - key: OPENAI_API_KEY
+        sync: false
+    region: oregon
     plan: free
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "python main.py"
+    pythonVersion: 3.11
